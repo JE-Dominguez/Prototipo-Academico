@@ -32,6 +32,7 @@
 }
 
         .view-container {
+            margin-top: 4rem;
             flex: 1;
             overflow-y: auto;
             padding-bottom: 80px;
