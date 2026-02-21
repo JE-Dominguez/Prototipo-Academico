@@ -57,7 +57,7 @@ nav {
 .view-container {
     flex: 1;
     overflow-y: auto;
-    padding-bottom: 70px; /* Evita que el contenido quede detrás del nav */
+    padding-bottom: 40px; /* Evita que el contenido quede detrás del nav */
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
 }
