@@ -1,70 +1,48 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-* { 
-    border-radius: 3px !important; 
-    box-sizing: border-box; 
-    -webkit-tap-highlight-color: transparent;
+/* RESET Y BASE */
+* {
+    border-radius: 3px !important;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
-
 body {
     font-family: 'Inter', sans-serif;
     background-color: #eef0f5;
     color: #1e293b;
-    margin: 0;
     overflow: hidden;
-    /* Centra el "celular" en pantallas grandes */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    -webkit-tap-highlight-color: transparent;
 }
 
+/* CONTENEDOR PRINCIPAL */
 .app-shell {
     width: 100%;
     max-width: 414px;
     height: 100vh;
-    /* dvh es mejor para móviles modernos para evitar que el nav se tape */
-    height: 100dvh; 
     margin: 0 auto;
     background-color: #f8fafc;
-    position: relative; /* FUNDAMENTAL: Ancla el nav absoluto aquí */
+    position: relative;
     display: flex;
     flex-direction: column;
     border-left: 1px solid #e2e8f0;
     border-right: 1px solid #e2e8f0;
     box-shadow: 0 0 40px rgba(0,0,0,0.08);
-    overflow: hidden;
 }
 
-/* EL NAV BAR ADAPTADO */
-nav {
-    background-color: white;
-    position: absolute; /* Cambiado de fixed a absolute */
-    bottom: 0;
-    left: 0;
-    right: 0; /* Ahora se estira solo hasta el borde del app-shell */
-    height: 64px; /* h-16 */
-    display: flex !important;
-    justify-content: space-around;
-    align-items: center;
-    z-index: 50;
-    border-top: 1px solid #f1f3f7;
-    box-shadow: 0 -2px 12px rgba(0,0,0,0.05);
-    /* Soporte para el área segura de iPhone (Notch inferior) */
-    padding-bottom: env(safe-area-inset-bottom);
-}
-
+/* VIEWS */
 .view-container {
     flex: 1;
     overflow-y: auto;
-    padding-bottom: 40px; /* Evita que el contenido quede detrás del nav */
+    padding-bottom: 90px; /* espacio para nav fijo */
     scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
 }
 .view-container::-webkit-scrollbar { display: none; }
 
-/* Resto de tus estilos... */
-.view { display: none; animation: fadeIn 0.3s ease; }
+.view {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
 .view.active { display: block; }
 
 @keyframes fadeIn {
@@ -72,17 +50,125 @@ nav {
     to { opacity: 1; transform: translateY(0); }
 }
 
-.nav-active { color: #4f46e5 !important; background: #eef2ff; }
+/* HEADER */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    padding: 0.8rem 1.2rem;
+    background: #fff;
+    border-bottom: 1px solid #f1f3f7;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+}
 
+/* NAV FIXED */
+nav {
+    background: #fff;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid #f1f3f7;
+    box-shadow: 0 -2px 12px rgba(0,0,0,0.05);
+    z-index: 40;
+}
+.nav-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 6px;
+    color: #a1a1aa;
+    transition: all 0.2s ease;
+}
+.nav-active {
+    color: #4f46e5 !important;
+    background: #eef2ff;
+    border-radius: 8px;
+}
+
+/* TOAST */
 #toast {
-    position: absolute; /* Cambiado a absolute para que flote dentro del shell */
-    top: 20px; 
+    position: fixed;
+    top: 20px;
     left: 50%;
     transform: translateX(-50%) translateY(-120px);
-    z-index: 1000; 
+    z-index: 1000;
     transition: transform 0.4s ease;
+    width: 90%;
+    max-width: 360px;
 }
 #toast.show { transform: translateX(-50%) translateY(0); }
 
-button { transition: all 0.15s ease; cursor: pointer; border: none; outline: none; }
-button:active { transform: scale(0.97); opacity: 0.88; }
+/* BOTONES Y FILTROS */
+button {
+    transition: all 0.15s ease;
+    cursor: pointer;
+}
+button:active {
+    transform: scale(0.97);
+    opacity: 0.88;
+}
+.filter-btn {
+    transition: all 0.2s ease;
+    font-weight: 600;
+}
+.filter-btn.active {
+    background-color: #4f46e5 !important;
+    color: white !important;
+    border-color: #4f46e5 !important;
+}
+.filter-btn:not(.active):hover { background-color: #f1f5f9; }
+
+/* CURSOS TAB */
+.course-tab-btn { transition: all 0.2s ease; }
+
+/* EXPAND CONTENT */
+.expand-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+.item-expand.open .expand-content { max-height: 1000px; }
+.item-expand.open .chevron-icon { transform: rotate(180deg); }
+
+/* NO SCROLLBAR */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* RESPONSIVE MÓVIL */
+@media (max-width: 480px) {
+    .app-shell {
+        border-left: none;
+        border-right: none;
+        box-shadow: none;
+    }
+
+    header, nav {
+        padding: 0.6rem 1rem;
+    }
+
+    .view-container {
+        padding-bottom: 70px;
+    }
+
+    .grid-cols-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0.5rem;
+    }
+
+    .text-sm { font-size: 12px; }
+    .text-xs { font-size: 10px; }
+    button { font-size: 11px; padding: 6px 10px; }
+}
+
+/* ESCALABLE EN CUALQUIER PANTALLA */
+@media (max-width: 360px) {
+    .hero-card, .grid-cols-4 > div {
+        padding: 0.4rem;
+    }
+    .nav-btn i { width: 18px; height: 18px; }
+}
