@@ -170,9 +170,5 @@ button:active {
     .hero-card, .grid-cols-4 > div {
         padding: 0.4rem;
     }
-    .nav-btn i { width: 18px; height: 18px; }
-    .view-container{
-        padding-top: 3rem;
-    }
-    
+    .nav-btn i { width: 18px; height: 18px; }  
 }
