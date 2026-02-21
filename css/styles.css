@@ -139,36 +139,16 @@ button:active {
 /* NO SCROLLBAR */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 
-/* RESPONSIVE MÓVIL */
-@media (max-width: 480px) {
-    .app-shell {
-        border-left: none;
-        border-right: none;
-        box-shadow: none;
-    }
 
-    header, nav {
-        padding: 0.6rem 1rem;
-    }
-
-    .view-container {
-        padding-bottom: 70px;
-    }
-
-    .grid-cols-4 {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 0.5rem;
-    }
-
-    .text-sm { font-size: 12px; }
-    .text-xs { font-size: 10px; }
-    button { font-size: 11px; padding: 6px 10px; }
-}
 
 /* ESCALABLE EN CUALQUIER PANTALLA */
 @media (max-width: 360px) {
     .hero-card, .grid-cols-4 > div {
         padding: 0.4rem;
     }
-    .nav-btn i { width: 18px; height: 18px; }  
+    .nav-btn i { width: 18px; height: 18px; }
+    .view-container{
+        padding-top: 3rem;
+    }
+    
 }
