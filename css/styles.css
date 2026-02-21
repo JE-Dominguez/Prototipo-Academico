@@ -1,94 +1,86 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-/* RESET Y BASE */
 * {
-    border-radius: 3px !important;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    border-radius: 3px;
 }
+
+html, body {
+    height: 100%;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     background-color: #eef0f5;
     color: #1e293b;
-    overflow: hidden;
     -webkit-tap-highlight-color: transparent;
+    overflow: hidden;
 }
 
 /* CONTENEDOR PRINCIPAL */
 .app-shell {
     width: 100%;
     max-width: 414px;
-    height: 100vh;
+    height: 100dvh; /* mejor que 100vh en móviles modernos */
     margin: 0 auto;
     background-color: #f8fafc;
-    position: relative;
+
     display: flex;
     flex-direction: column;
-    border-left: 1px solid #e2e8f0;
-    border-right: 1px solid #e2e8f0;
-    box-shadow: 0 0 40px rgba(0,0,0,0.08);
-}
 
-/* VIEWS */
-.view-container {
-    flex: 1;
-    overflow-y: auto;
-    padding-bottom: 90px; /* espacio para nav fijo */
-    scrollbar-width: none;
-}
-.view-container::-webkit-scrollbar { display: none; }
-
-.view {
-    display: none;
-    animation: fadeIn 0.3s ease;
-}
-.view.active { display: block; }
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(6px); }
-    to { opacity: 1; transform: translateY(0); }
+    overflow: hidden;
 }
 
 /* HEADER */
 header {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    padding: 0.8rem 1.2rem;
-    background: #fff;
-    border-bottom: 1px solid #f1f3f7;
-    box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+    flex-shrink: 0; /* nunca reduce tamaño */
 }
 
-/* NAV FIXED */
+/* CONTENIDO */
+.view-container {
+    flex: 1; /* ocupa el espacio restante */
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* NAVBAR */
 nav {
-    background: #fff;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    border-top: 1px solid #f1f3f7;
-    box-shadow: 0 -2px 12px rgba(0,0,0,0.05);
-    z-index: 40;
+    flex-shrink: 0; /* nunca empuja contenido */
 }
-.nav-btn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
-    padding: 6px;
-    color: #a1a1aa;
-    transition: all 0.2s ease;
+
+/* VISTAS */
+.view {
+    display: none;
+    animation: fadeIn 0.25s ease;
 }
+
+.view.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* BOTONES */
+button {
+    transition: all 0.15s ease;
+    cursor: pointer;
+}
+
+button:active {
+    transform: scale(0.96);
+    opacity: 0.85;
+}
+
+/* NAV ACTIVO */
 .nav-active {
     color: #4f46e5 !important;
     background: #eef2ff;
-    border-radius: 8px;
 }
 
 /* TOAST */
@@ -97,58 +89,10 @@ nav {
     top: 20px;
     left: 50%;
     transform: translateX(-50%) translateY(-120px);
-    z-index: 1000;
-    transition: transform 0.4s ease;
-    width: 90%;
-    max-width: 360px;
+    transition: transform 0.3s ease;
+    z-index: 999;
 }
-#toast.show { transform: translateX(-50%) translateY(0); }
 
-/* BOTONES Y FILTROS */
-button {
-    transition: all 0.15s ease;
-    cursor: pointer;
-}
-button:active {
-    transform: scale(0.97);
-    opacity: 0.88;
-}
-.filter-btn {
-    transition: all 0.2s ease;
-    font-weight: 600;
-}
-.filter-btn.active {
-    background-color: #4f46e5 !important;
-    color: white !important;
-    border-color: #4f46e5 !important;
-}
-.filter-btn:not(.active):hover { background-color: #f1f5f9; }
-
-/* CURSOS TAB */
-.course-tab-btn { transition: all 0.2s ease; }
-
-/* EXPAND CONTENT */
-.expand-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease;
-}
-.item-expand.open .expand-content { max-height: 1000px; }
-.item-expand.open .chevron-icon { transform: rotate(180deg); }
-
-/* NO SCROLLBAR */
-.no-scrollbar::-webkit-scrollbar { display: none; }
-
-
-
-/* ESCALABLE EN CUALQUIER PANTALLA */
-@media (max-width: 360px) {
-    .hero-card, .grid-cols-4 > div {
-        padding: 0.4rem;
-    }
-    .nav-btn i { width: 18px; height: 18px; }
-    .view-container{
-        padding-top: 3rem;
-    }
-    
+#toast.show {
+    transform: translateX(-50%) translateY(0);
 }
