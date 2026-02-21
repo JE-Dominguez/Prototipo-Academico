@@ -140,7 +140,7 @@ button:active {
 .no-scrollbar::-webkit-scrollbar { display: none; }
 
 /* RESPONSIVE MÓVIL */
-@media (max-width: 480px) {
+@media (max-width: 413px) {
     .app-shell {
         border-left: none;
         border-right: none;
@@ -149,6 +149,10 @@ button:active {
 
     header, nav {
         padding: 0.6rem 1rem;
+    }
+
+    .view-container {
+        padding-bottom: 70px;
     }
 
     .grid-cols-4 {
