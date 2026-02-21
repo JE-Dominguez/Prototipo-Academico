@@ -151,10 +151,6 @@ button:active {
         padding: 0.6rem 1rem;
     }
 
-    .view-container {
-        padding-bottom: 70px;
-    }
-
     .grid-cols-4 {
         grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 0.5rem;
