@@ -31,6 +31,10 @@
     display: block !important; /* fuerza a mostrar en todas las pantallas */
 }
 
+nav {
+    padding-bottom: 4rem;
+}
+
         .view-container {
             flex: 1;
             overflow-y: auto;
@@ -71,8 +75,3 @@
         .course-tab-btn { transition: all 0.2s ease; }
         button { transition: all 0.15s ease; cursor: pointer; }
         button:active { transform: scale(0.97); opacity: 0.88; }
-        @media (max-width: 768px) {
-    #content-scroll {
-        padding-bottom: 4rem; /* espacio suficiente para el nav inferior */
-    }
-}
