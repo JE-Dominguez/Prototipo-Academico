@@ -32,7 +32,6 @@
 }
 
         .view-container {
-            margin-top: 1rem;
             flex: 1;
             overflow-y: auto;
             padding-bottom: 80px;
@@ -60,9 +59,7 @@
             z-index: 1000; transition: transform 0.4s ease;
         }
 
-        #content-scroll {
-    padding-bottom: 4rem; 
-}
+
         #toast.show { transform: translateX(-50%) translateY(0); }
 
         .no-scrollbar::-webkit-scrollbar { display: none; }
